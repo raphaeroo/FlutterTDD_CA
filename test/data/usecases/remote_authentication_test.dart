@@ -17,7 +17,7 @@ void main() {
   setUp(() {
     httpClient = new HttpClientSpy();
     url = faker.internet.httpUrl();
-    sut = new RemoteAuthentication(httpClient: httpClient, url: url);
+    sut = RemoteAuthentication(httpClient: httpClient, url: url);
   });
 
   test('Should call HttpClient with correct values', () async {
