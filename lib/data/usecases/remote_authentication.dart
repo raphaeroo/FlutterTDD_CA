@@ -6,6 +6,8 @@ import '../../domain/usecases/usecases.dart';
 
 import '../http/http.dart';
 
+import '../models/remote_account_model.dart';
+
 class RemoteAuthentication {
   final HttpClient httpClient;
   final String url;
@@ -18,7 +20,7 @@ class RemoteAuthentication {
           url: url,
           method: 'post',
           body: RemoteAuthenticationParams.fromDomain(params).toJson());
-      return AccountEntity.fromJson(httpResponse);
+      return RemoteAccountModel.fromJson(httpResponse).toEntity();
     } on HttpError catch (error) {
       throw error == HttpError.unauthorized
           ? DomainError.invalidCredentials
